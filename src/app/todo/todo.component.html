@@ -1,13 +1,22 @@
 <div class="todo text-center">
   <h1>Add Todo</h1>
-  <div class="form-group">
-    <input type="text" class="form-control input-lg" placeholder="Add todo..." autofocus #todoText>
-    <br>
-    <button class="btn btn-primary">Create</button>
-  </div>
+
+  <form class="form-group row" (ngSubmit)="create(); todoForm.reset()" #todoForm="ngForm">
+    <div class="col-md-11">
+      <input
+        [(ngModel)]="newTodoTitle"
+        name="text"
+        type="text" class="form-control input-lg"
+        placeholder="Add todo..." autofocus required>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" [disabled]="todoForm.form.invalid">Create</button>
+    </div>
+  </form>
+
   <div class="row">
     <div class="col-md-12">
-      <app-todo-list></app-todo-list>
+      <app-todo-list [todos]="todos"></app-todo-list>
     </div>
   </div>
 </div>

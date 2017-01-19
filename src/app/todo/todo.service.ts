@@ -12,4 +12,19 @@ export class TodoService {
       .map(res => res.json());
   }
 
+  createTodo(body) {
+    return this._http.post('/api/todos', body)
+      .map(res => res.json());
+  }
+
+  deleteTodo(id) {
+    return this._http.delete(`/api/todos/${id}`)
+      .map(res => res.json());
+  }
+
+  updateTodo(todo) {
+    return this._http.put(`/api/todos/${todo._id}`, todo)
+      .map(res => res.json());
+  }
+
 }

@@ -1,12 +1,22 @@
-<div>
-  <div class="col-md-1">
-    <input type="checkbox">
-  </div>
-  <div class="col-md-7">
-    Some todo
-  </div>
-  <div class="col-md-4">
-    <input type="button" class="btn btn-danger pull-right" value="Delete">
-    <input type="button" class="btn btn-default pull-right" value="Edit">
-  </div>
-</div>
+<li class="list-group-item todo-item">
+    <div class="todo-item__label">
+      <input
+        type="checkbox"
+        (change)="updateTodo()"
+        [(ngModel)]="todo.completed">
+      <span
+        *ngIf="!editMode"
+        (dblclick)="editMode = true">{{ todo.text }}</span>
+      <input
+        *ngIf="editMode"
+        (keyup)="editTodo($event)"
+        [(ngModel)]="todo.text"
+        type="text">
+    </div>
+    <div>
+      <button
+        (click)="deleteTodo($event, todo._id)"
+        class="btn btn-danger">Delete
+      </button>
+    </div>
+</li>
